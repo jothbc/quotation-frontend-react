@@ -1,5 +1,10 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { Link as LinkDom } from 'react-router-dom';
+
+const isInvalid = css`
+  border: 1px solid red;
+  color: red;
+`;
 
 export const Background = styled.div`
   width: 100vw;
@@ -22,8 +27,6 @@ export const Container = styled.div`
   box-shadow: 0px 0px 50px rgba(0, 0, 0, 0.5);
   border-radius: 20px;
   width: 50%;
-  /* min-width: 550px; */
-  /* height: 40vh; */
   min-height: 300px;
   margin: 10% auto;
   display: flex;
@@ -77,6 +80,10 @@ export const Form = styled.div`
   margin-bottom: 30px;
 `;
 
+interface IInputLeftProps {
+  Valid?: boolean;
+}
+
 export const InputLeft = styled.div`
   background: #f1f1f1;
   border: 1px solid #7a7a7a;
@@ -90,6 +97,7 @@ export const InputLeft = styled.div`
   align-items: center;
   color: #7d7d7d;
   font-weight: bold;
+  ${(props: IInputLeftProps) => props.Valid === false && isInvalid};
 `;
 
 export const InputRight = styled.div`
@@ -135,7 +143,6 @@ export const Button = styled.button`
   align-items: center;
 
   width: ${(props: IButtonProps) => (props.isClicked ? 97 : 20)}%;
-  /* transition: width 2s; */
   transition: all 1s;
 
   padding: 0 20px;

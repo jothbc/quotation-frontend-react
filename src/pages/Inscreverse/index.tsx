@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Container,
   Header,
@@ -16,6 +16,27 @@ import {
 import cartImg from '../../assets/cart_market2.gif';
 
 const Inscreverse: React.FC = () => {
+  const [buttonClicked, setButtonClicked] = useState(false);
+
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [emailValid, setEmailValid] = useState(true);
+  const [password, setPassword] = useState('');
+  const [password2, setPassword2] = useState('');
+  const [company, setCompany] = useState('');
+  const [CNPJ, setCNPJ] = useState('');
+  const [tel, setTel] = useState('');
+  const [city, setCity] = useState('');
+  const [state, setState] = useState('');
+
+  function handleButtonClicked() {
+    setButtonClicked(true);
+
+    // criar a conta
+
+    // voltar para pagina de logon
+  }
+
   return (
     <>
       <Background />
@@ -28,16 +49,16 @@ const Inscreverse: React.FC = () => {
               <span>Seu Nome</span>
             </InputLeft>
             <InputRight>
-              <Input type="text" />
+              <Input type="text" onChange={(e) => setName(e.target.value)} />
             </InputRight>
           </DivInput>
 
           <DivInput>
-            <InputLeft>
+            <InputLeft Valid={emailValid}>
               <span>Email</span>
             </InputLeft>
             <InputRight>
-              <Input type="email" />
+              <Input type="email" onChange={(e) => setEmail(e.target.value)} />
             </InputRight>
           </DivInput>
 
@@ -46,7 +67,10 @@ const Inscreverse: React.FC = () => {
               <span>Senha</span>
             </InputLeft>
             <InputRight>
-              <Input type="password" />
+              <Input
+                type="password"
+                onChange={(e) => setPassword(e.target.value)}
+              />
             </InputRight>
           </DivInput>
 
@@ -55,7 +79,10 @@ const Inscreverse: React.FC = () => {
               <span>Confirme sua senha</span>
             </InputLeft>
             <InputRight>
-              <Input type="password" />
+              <Input
+                type="password"
+                onChange={(e) => setPassword2(e.target.value)}
+              />
             </InputRight>
           </DivInput>
 
@@ -64,7 +91,7 @@ const Inscreverse: React.FC = () => {
               <span>Empresa</span>
             </InputLeft>
             <InputRight>
-              <Input type="text" />
+              <Input type="text" onChange={(e) => setCompany(e.target.value)} />
             </InputRight>
           </DivInput>
 
@@ -73,7 +100,7 @@ const Inscreverse: React.FC = () => {
               <span>CNPJ</span>
             </InputLeft>
             <InputRight>
-              <Input type="number" />
+              <Input type="number" onChange={(e) => setCNPJ(e.target.value)} />
             </InputRight>
           </DivInput>
 
@@ -82,7 +109,7 @@ const Inscreverse: React.FC = () => {
               <span>Telefone</span>
             </InputLeft>
             <InputRight>
-              <Input type="number" />
+              <Input type="number" onChange={(e) => setTel(e.target.value)} />
             </InputRight>
           </DivInput>
 
@@ -91,7 +118,7 @@ const Inscreverse: React.FC = () => {
               <span>Cidade</span>
             </InputLeft>
             <InputRight>
-              <Input type="text" />
+              <Input type="text" onChange={(e) => setCity(e.target.value)} />
             </InputRight>
           </DivInput>
 
@@ -100,11 +127,11 @@ const Inscreverse: React.FC = () => {
               <span>Estado</span>
             </InputLeft>
             <InputRight>
-              <Input type="Text" />
+              <Input type="Text" onChange={(e) => setState(e.target.value)} />
             </InputRight>
           </DivInput>
 
-          <Button isClicked={false}>
+          <Button onClick={handleButtonClicked} isClicked={buttonClicked}>
             Criar
             <img src={cartImg} alt="" />
           </Button>
