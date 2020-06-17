@@ -25,7 +25,9 @@ export const Container = styled.div`
   /* min-width: 550px; */
   height: 40vh;
   min-height: 300px;
-  margin: 10% auto;
+  margin-top: 10%;
+  margin-left: auto;
+  margin-right: auto;
   display: flex;
   transition: all 1s;
 

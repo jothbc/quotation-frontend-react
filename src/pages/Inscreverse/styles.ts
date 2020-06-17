@@ -28,7 +28,9 @@ export const Container = styled.div`
   border-radius: 20px;
   width: 50%;
   min-height: 300px;
-  margin: 10% auto;
+  margin-top: 50px;
+  margin-left: auto;
+  margin-right: auto;
   display: flex;
   transition: all 1s;
 

@@ -28,7 +28,7 @@ const Logon: React.FC = () => {
     console.log(`password: ${password}`);
     setButtonClicked(true);
     // depois de autenticado
-    // history.push('/dashboard');
+    history.push('/dashboard');
   }
 
   return (
@@ -62,7 +62,7 @@ const Logon: React.FC = () => {
             Logon
             <img src={cartImg} alt="" />
           </Button>
-          <Link to="/inscrever-se">inscrever-se</Link>
+          <Link to="/signup">inscrever-se</Link>
         </Form>
       </Container>
     </>

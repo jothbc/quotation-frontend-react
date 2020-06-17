@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import {
   Container,
   Header,
@@ -13,9 +14,13 @@ import {
   Link,
 } from './styles';
 
+import api from '../../services/api';
+
 import cartImg from '../../assets/cart_market2.gif';
 
 const Inscreverse: React.FC = () => {
+  const history = useHistory();
+
   const [buttonClicked, setButtonClicked] = useState(false);
 
   const [name, setName] = useState('');
@@ -23,18 +28,37 @@ const Inscreverse: React.FC = () => {
   const [emailValid, setEmailValid] = useState(true);
   const [password, setPassword] = useState('');
   const [password2, setPassword2] = useState('');
+  const [passwordValid, setPasswordValid] = useState(true);
   const [company, setCompany] = useState('');
   const [CNPJ, setCNPJ] = useState('');
   const [tel, setTel] = useState('');
   const [city, setCity] = useState('');
   const [state, setState] = useState('');
 
-  function handleButtonClicked() {
+  async function handleButtonClicked() {
     setButtonClicked(true);
+    setPasswordValid(true);
 
     // criar a conta
+    if (password !== password2) {
+      setButtonClicked(false);
+      setPasswordValid(false);
+    }
 
+    // const response = await api.post('/signup', {
+    //   name,
+    //   email,
+    //   password,
+    //   company,
+    //   CNPJ,
+    //   tel,
+    //   city,
+    //   state,
+    // });
+
+    // console.log(response.data);
     // voltar para pagina de logon
+    history.goBack();
   }
 
   return (
@@ -49,7 +73,7 @@ const Inscreverse: React.FC = () => {
               <span>Seu Nome</span>
             </InputLeft>
             <InputRight>
-              <Input type="text" onChange={(e) => setName(e.target.value)} />
+              <Input onChange={(e) => setName(e.target.value)} />
             </InputRight>
           </DivInput>
 
@@ -63,7 +87,7 @@ const Inscreverse: React.FC = () => {
           </DivInput>
 
           <DivInput>
-            <InputLeft>
+            <InputLeft Valid={passwordValid}>
               <span>Senha</span>
             </InputLeft>
             <InputRight>
@@ -75,7 +99,7 @@ const Inscreverse: React.FC = () => {
           </DivInput>
 
           <DivInput>
-            <InputLeft style={{ width: 390 }}>
+            <InputLeft style={{ width: 390 }} Valid={passwordValid}>
               <span>Confirme sua senha</span>
             </InputLeft>
             <InputRight>
