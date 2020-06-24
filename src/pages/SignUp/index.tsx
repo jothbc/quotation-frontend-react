@@ -18,7 +18,7 @@ import api from '../../services/api';
 
 import cartImg from '../../assets/cart_market2.gif';
 
-const Inscreverse: React.FC = () => {
+const SignUp: React.FC = () => {
   const history = useHistory();
 
   const [buttonClicked, setButtonClicked] = useState(false);
@@ -165,4 +165,4 @@ const Inscreverse: React.FC = () => {
   );
 };
 
-export default Inscreverse;
+export default SignUp;

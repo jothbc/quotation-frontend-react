@@ -28,7 +28,9 @@ const Logon: React.FC = () => {
     console.log(`password: ${password}`);
     setButtonClicked(true);
     // depois de autenticado
-    history.push('/dashboard');
+    setTimeout(() => {
+      history.push('/dashboard');
+    }, 1000);
   }
 
   return (

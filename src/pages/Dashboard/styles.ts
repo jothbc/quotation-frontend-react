@@ -1,5 +1,14 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { Link as LinkDOM } from 'react-router-dom';
+
+const fadeIn = keyframes`
+  0% { opacity: 0;
+    transform: translateY(10px);
+  }
+  100% { opacity: 100;
+    transform: translateY(0px);
+  }
+`;
 
 export const Container = styled.div`
   background: #f2f2f2;
@@ -8,6 +17,7 @@ export const Container = styled.div`
 `;
 
 export const Header = styled.div`
+  z-index: 2;
   background: #151515;
   height: 50px;
   position: fixed;
@@ -89,9 +99,19 @@ export const BoxContent = styled.div`
   padding: 10px 10px 0px 10px;
 `;
 
+export const LinkNone = styled(LinkDOM)`
+  text-decoration: none;
+`;
+
 export const LiQuotation = styled.li`
-  display: flex;
-  justify-content: space-around;
+  cursor: pointer;
+  animation: ${fadeIn} 1s;
+  list-style-type: none;
+  a {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+  }
 
   border-bottom-color: #666464;
   border-bottom-width: 1px;
@@ -105,9 +125,14 @@ export const LiQuotation = styled.li`
   span + span {
     color: #666464;
   }
+  &:hover {
+    transform: translateX(10px);
+  }
+  transition: all 0.5s;
 `;
 
 export const LiCompany = styled.li`
+  animation: ${fadeIn} 1s;
   display: flex;
   align-items: center;
   padding: 10px;
@@ -119,16 +144,13 @@ export const LiCompany = styled.li`
     height: 30px;
     border-radius: 50%;
     margin-right: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
   }
 
   &:hover {
     color: #a721a1;
-    letter-spacing: 0.1em;
-    img {
-      width: 40px;
-      height: 40px;
-      transition: all 0.5s;
-    }
+    transform: translateX(10px);
+    transition: all 0.5s;
   }
   cursor: pointer;
 `;
@@ -161,11 +183,13 @@ export const Feed = styled.div`
   box-shadow: 0px 0px 50px rgba(0, 0, 0, 0.25);
   border-radius: 20px 20px 0px 0px;
   margin: 20px 20px 0 20px;
-  height: 100%;
+  /* height: 100%; */
+  height: max-content;
+  padding-bottom: 50px;
 
   display: flex;
   justify-content: center;
-  overflow-y: auto;
+  /* overflow-y: auto; */
   position: relative;
 
   & > span {
@@ -192,17 +216,26 @@ export const Feed = styled.div`
 
 export const LiFeed = styled.li`
   /* border: 1px solid red; */
+
+  animation: ${fadeIn} 1s;
   display: flex;
   align-items: center;
   margin-bottom: 10px;
+  a {
+    width: 100%;
+  }
+
   img {
+    cursor: pointer;
     width: 50px;
     height: 50px;
     border-radius: 50%;
     margin-right: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
   }
 
   div {
+    cursor: pointer;
     color: #277dcd;
     width: 100%;
     background: #e8e8e8;
