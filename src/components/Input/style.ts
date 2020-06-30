@@ -4,7 +4,7 @@ export const Container = styled.div`
   display: flex;
   border: 1px solid #7d7d7d;
   padding: 1px 5px;
-  border-radius: 5px;
+  border-radius: 10px;
   height: 30px;
 
   line-height: 29px;
@@ -23,5 +23,6 @@ export const Container = styled.div`
     border: none;
     margin: 0 5px;
     font-size: 18px;
+    background: transparent;
   }
 `;
