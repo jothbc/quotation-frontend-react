@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { useHistory, Link } from 'react-router-dom';
 import { FiChevronLeft } from 'react-icons/fi';
 import { Form } from '@unform/web';
+import * as Yup from 'yup';
 import { Container, BackgroundFooter, Button } from './styles';
 
 import cartImg from '../../assets/cart_market2.gif';
@@ -22,9 +23,22 @@ const SignUp: React.FC = () => {
     }, 1000);
   }
 
-  function handleSubmit(data: any): void {
-    console.log(data);
-  }
+  const handleSubmit = useCallback(async (data: any) => {
+    // console.log(data);
+    try {
+      const schema = Yup.object().shape({
+        name: Yup.string().required('Nome é obrigatório.'),
+        email: Yup.string()
+          .required('Email é obrigatório.')
+          .email('Informe um email válido.'),
+        password: Yup.string().required().min(6, 'No mínimo 6 digitos.'),
+      });
+
+      await schema.validate(data);
+    } catch (err) {
+      console.log(err);
+    }
+  }, []);
   return (
     <>
       <BackgroundFooter />
