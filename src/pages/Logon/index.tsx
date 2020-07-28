@@ -31,10 +31,6 @@ const Logon: React.FC = () => {
     email,
     password,
   }: ISubmitProps): Promise<void> {
-    // setTimeout(() => {
-    //   history.push('/dashboard');
-    // }, 1000);
-
     try {
       formRef.current?.setErrors({});
 
@@ -44,6 +40,10 @@ const Logon: React.FC = () => {
           abortEarly: false,
         },
       );
+
+      setTimeout(() => {
+        history.push('/dashboard');
+      }, 1000);
     } catch (err) {
       if (err instanceof Yup.ValidationError) {
         // basicamente fiz uma interface inline para o errors...
