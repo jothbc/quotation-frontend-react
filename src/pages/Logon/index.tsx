@@ -1,21 +1,62 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { useHistory, Link } from 'react-router-dom';
 import { Form } from '@unform/web';
+import { FormHandles } from '@unform/core';
+import * as Yup from 'yup';
 import { Container, Logo, Content, Button } from './styles';
 
 import api from '../../services/api';
 
 import Input from '../../components/Input';
 
+interface ISubmitProps {
+  email: string;
+  password: string;
+}
+
 const Logon: React.FC = () => {
+  const formRef = useRef<FormHandles>(null);
+
+  const schema = Yup.object().shape({
+    email: Yup.string()
+      .email('Informe um email válido.')
+      .required('Informe um email'),
+    password: Yup.string().min(6, 'Mínimo de 6 caracteres.'),
+  });
+
   const history = useHistory();
   const [btnClicked, setBtnClicked] = useState(false);
 
-  function handleSubmit(data: any): void {
-    console.log(data);
+  async function handleSubmit({
+    email,
+    password,
+  }: ISubmitProps): Promise<void> {
     // setTimeout(() => {
     //   history.push('/dashboard');
     // }, 1000);
+
+    try {
+      formRef.current?.setErrors({});
+
+      await schema.validate(
+        { email, password },
+        {
+          abortEarly: false,
+        },
+      );
+    } catch (err) {
+      if (err instanceof Yup.ValidationError) {
+        // basicamente fiz uma interface inline para o errors...
+        const errors: { [key: string]: string } = {};
+        // percorri cada erro q esta contido em inner e peguei a chave e valor
+        err.inner.forEach((element) => {
+          errors[element.path] = element.message;
+        });
+        // seta os erros para a variavel erros dos inputs
+        formRef.current?.setErrors(errors);
+        setBtnClicked(false);
+      }
+    }
   }
   return (
     <Container>
@@ -82,9 +123,11 @@ const Logon: React.FC = () => {
         </svg>
       </Logo>
       <Content>
-        <Form onSubmit={handleSubmit}>
+        <Form onSubmit={handleSubmit} ref={formRef}>
           <Input name="email">Email</Input>
-          <Input name="password">Senha</Input>
+          <Input name="password" type="password">
+            Senha
+          </Input>
           <Button
             type="submit"
             onClick={() => setBtnClicked(true)}

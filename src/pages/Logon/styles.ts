@@ -122,6 +122,11 @@ export const Content = styled.div`
       color: #0186e7;
       font-weight: bold;
       font-size: 0.8em;
+      transition: color 0.3s;
+
+      &:hover {
+        color: ${shade(0.5, '#0186e7')};
+      }
     }
   }
 `;

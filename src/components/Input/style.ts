@@ -27,4 +27,26 @@ export const Container = styled.div`
     font-weight: 700;
     letter-spacing: 0.1em;
   }
+
+  small {
+    position: absolute;
+    right: 0;
+    transform: translateY(-70%);
+    background: #f2f2f2;
+    color: #0186e7;
+    border-radius: 5px;
+    white-space: nowrap;
+    padding: 2px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    ::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      bottom: 0%;
+      border-style: solid;
+      border-width: 6px 6px 0 6px;
+      border-color: #f2f2f2 transparent;
+      transform: translateY(100%);
+    }
+  }
 `;

@@ -23,6 +23,7 @@ const Input: React.FC<InputProps> = ({ name, children, ...rest }) => {
     <Container>
       <span>{children}</span>
       <input ref={inputRef} {...rest} />
+      {error && <small>{error}</small>}
     </Container>
   );
 };
