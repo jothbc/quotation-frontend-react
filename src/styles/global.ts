@@ -17,4 +17,8 @@ export default createGlobalStyle`
   button {
     cursor: pointer;
   }
+
+  #root{
+    height: 100vh;
+  }
 `;
