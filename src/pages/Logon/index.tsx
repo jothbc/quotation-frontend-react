@@ -15,8 +15,6 @@ interface ISubmitProps {
 }
 
 const Logon: React.FC = () => {
-  const formRef = useRef<FormHandles>(null);
-
   const schema = Yup.object().shape({
     email: Yup.string()
       .email('Informe um email válido.')
@@ -27,6 +25,7 @@ const Logon: React.FC = () => {
   const history = useHistory();
   const [btnClicked, setBtnClicked] = useState(false);
 
+  const formRef = useRef<FormHandles>(null);
   async function handleSubmit({
     email,
     password,

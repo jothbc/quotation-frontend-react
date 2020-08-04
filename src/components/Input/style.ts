@@ -31,7 +31,7 @@ export const Container = styled.div`
   small {
     position: absolute;
     right: 0;
-    transform: translateY(-70%);
+    transform: translateY(-110%);
     background: #f2f2f2;
     color: #0186e7;
     border-radius: 5px;

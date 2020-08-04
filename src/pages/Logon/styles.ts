@@ -54,7 +54,7 @@ export const Container = styled.div`
 
 function getDelay() {
   let full = '';
-  for (let i = 0; i < 10; i++) {
+  for (let i = 0; i < 10; i += 1) {
     full += `path:nth-child(${i}) {
               animation-delay: ${i * 175}ms;
             }`;

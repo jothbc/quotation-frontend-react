@@ -1,220 +1,9 @@
 import React, { useState } from 'react';
 import { FiLogOut, FiChevronRight, FiEye, FiFileText } from 'react-icons/fi';
-import {
-  Container,
-  Button,
-  Header,
-  Footer,
-  Box,
-  Feed,
-  Section,
-  SectionBox,
-  Link,
-  LinkNone,
-  BoxContent,
-  LiQuotation,
-  LiCompany,
-  LiFeed,
-} from './styles';
+import { Container, Section, BoxArea, Box, Feed, FeedItem } from './styles';
 
-import parati from '../../assets/temp/parati.png';
-import atacadoJoinvile from '../../assets/temp/atacadao.jpg';
-import fort from '../../assets/temp/fort.png';
-
-const friendsTemp = [
-  {
-    id: 1,
-    name: 'Parati Distribuidora',
-    logo: parati,
-  },
-  {
-    id: 2,
-    name: 'Atacado Joinvile',
-    logo: atacadoJoinvile,
-  },
-  {
-    id: 3,
-    name: 'Fort Atacadista',
-    logo: fort,
-  },
-];
-
-const meQuotations = [
-  {
-    id: 1,
-    code: 236455,
-    date: '22/06/2020',
-  },
-  {
-    id: 13,
-    code: 256771,
-    date: '07/12/2020',
-  },
-  {
-    id: 64,
-    code: 269882,
-    date: '01/02/2021',
-  },
-];
-
-const feedTemp = [
-  {
-    id: 1,
-    company: {
-      id: 1,
-      logo: parati,
-      name: 'Parati Distribuidora',
-    },
-    date: '02/05/2020',
-    quotation: 235772,
-    views: 10,
-    quotations: 6,
-    status: 'open',
-  },
-  {
-    id: 2,
-    company: {
-      id: 2,
-      logo: atacadoJoinvile,
-      name: 'Atacado Joinvile',
-    },
-    date: '17/06/2020',
-    quotation: 245882,
-    views: 32,
-    quotations: 12,
-    status: 'close',
-  },
-  {
-    id: 3,
-    company: {
-      id: 3,
-      logo: fort,
-      name: 'Fort Atacadista',
-    },
-    date: '30/07/2020',
-    quotation: 245920,
-    views: 13,
-    quotations: 4,
-    status: 'open',
-  },
-  {
-    id: 4,
-    company: {
-      id: 1,
-      logo: parati,
-      name: 'Parati Distribuidora',
-    },
-    date: '02/05/2020',
-    quotation: 235772,
-    views: 10,
-    quotations: 6,
-    status: 'open',
-  },
-  {
-    id: 5,
-    company: {
-      id: 2,
-      logo: atacadoJoinvile,
-      name: 'Atacado Joinvile',
-    },
-    date: '17/06/2020',
-    quotation: 245882,
-    views: 32,
-    quotations: 12,
-    status: 'close',
-  },
-  {
-    id: 6,
-    company: {
-      id: 3,
-      logo: fort,
-      name: 'Fort Atacadista',
-    },
-    date: '30/07/2020',
-    quotation: 245920,
-    views: 13,
-    quotations: 4,
-    status: 'open',
-  },
-  {
-    id: 7,
-    company: {
-      id: 1,
-      logo: parati,
-      name: 'Parati Distribuidora',
-    },
-    date: '02/05/2020',
-    quotation: 235772,
-    views: 10,
-    quotations: 6,
-    status: 'open',
-  },
-  {
-    id: 8,
-    company: {
-      id: 2,
-      logo: atacadoJoinvile,
-      name: 'Atacado Joinvile',
-    },
-    date: '17/06/2020',
-    quotation: 245882,
-    views: 32,
-    quotations: 12,
-    status: 'close',
-  },
-  {
-    id: 9,
-    company: {
-      id: 3,
-      logo: fort,
-      name: 'Fort Atacadista',
-    },
-    date: '30/07/2020',
-    quotation: 245920,
-    views: 13,
-    quotations: 4,
-    status: 'open',
-  },
-  {
-    id: 10,
-    company: {
-      id: 1,
-      logo: parati,
-      name: 'Parati Distribuidora',
-    },
-    date: '02/05/2020',
-    quotation: 235772,
-    views: 10,
-    quotations: 6,
-    status: 'open',
-  },
-  {
-    id: 11,
-    company: {
-      id: 2,
-      logo: atacadoJoinvile,
-      name: 'Atacado Joinvile',
-    },
-    date: '17/06/2020',
-    quotation: 245882,
-    views: 32,
-    quotations: 12,
-    status: 'close',
-  },
-  {
-    id: 12,
-    company: {
-      id: 3,
-      logo: fort,
-      name: 'Fort Atacadista',
-    },
-    date: '30/07/2020',
-    quotation: 245920,
-    views: 13,
-    quotations: 4,
-    status: 'open',
-  },
-];
+import { friendsTemp, feedTemp, meQuotations } from '../../temp';
+import Header from '../../components/Header';
 
 const Dashboard: React.FC = () => {
   const myId = 1;
@@ -224,104 +13,74 @@ const Dashboard: React.FC = () => {
 
   function handleLogout() {
     // fazer o logout
-    console.log('logout');
   }
   return (
     <>
       <Container>
-        <Header>
-          <span>QUOTATION</span>
-          <Button onClick={handleLogout}>
-            LOGOUT
-            <FiLogOut style={{ marginLeft: 5 }} />
-          </Button>
-        </Header>
+        <Header />
         <Section>
-          <SectionBox>
+          <BoxArea>
             <Box>
-              <BoxContent>
-                <ul>
-                  {/* Me Quotations */}
-                  {quotations.map((quotation) => (
-                    <LiQuotation key={quotation.id}>
-                      <LinkNone to={`quotation-owner/${quotation.code}`}>
-                        <span>{`#${quotation.code}`}</span>
-                        <span>{quotation.date}</span>
-                      </LinkNone>
-                    </LiQuotation>
-                  ))}
-                </ul>
-              </BoxContent>
-              <Link to="/new-quotation">
+              <ul className="quotation">
+                {quotations.map((quotation) => (
+                  <li key={quotation.id}>
+                    <span>{`#${quotation.code}`}</span>
+                    <span>{quotation.date}</span>
+                  </li>
+                ))}
+              </ul>
+              <button type="button">
                 Nova Cotação
                 <FiChevronRight />
-              </Link>
+              </button>
             </Box>
             <Box>
-              <BoxContent>
-                <ul>
-                  {/* Friends Companys List */}
-                  {friends.map((friend) => (
-                    <LiCompany key={friend.id}>
-                      <img src={friend.logo} alt="" />
-                      <span>{friend.name}</span>
-                    </LiCompany>
-                  ))}
-                </ul>
-              </BoxContent>
-              <Link to="/company-search">
+              <ul className="friends">
+                {friends.map((friend) => (
+                  <li key={friend.id}>
+                    <img src={friend.logo} alt={friend.name} />
+                    <span>{friend.name}</span>
+                  </li>
+                ))}
+              </ul>
+              <button type="button">
                 Buscar Empresas
                 <FiChevronRight />
-              </Link>
+              </button>
             </Box>
-          </SectionBox>
-
+          </BoxArea>
           <Feed>
-            <span>Atividades Recentes</span>
-            <ul>
-              {/* Feed */}
-              {feed.map((activity) => (
-                <LiFeed key={activity.id}>
-                  <img src={activity.company.logo} alt="" />
-                  <LinkNone
-                    to={
-                      activity.company.id === myId
-                        ? `quotation-owner/${activity.quotation}`
-                        : `quotation/${activity.quotation}`
-                    }
-                  >
-                    <div>
-                      <div>
-                        {activity.company.name}
-                        <span>
-                          {`${
-                            activity.status === 'open'
-                              ? 'iniciou uma nova cotação em '
-                              : 'encerrou a cotação em '
-                          }
-                        ${activity.date}`}
-                        </span>
-                        <span>{`#${activity.quotation}`}</span>
-                      </div>
-                      <div>
-                        <span>
-                          <FiEye />
-                          {`Views ${activity.views}`}
-                        </span>
-                        <span>
-                          <FiFileText />
-                          {`Cotações ${activity.quotations}`}
-                        </span>
-                      </div>
-                    </div>
-                  </LinkNone>
-                </LiFeed>
-              ))}
-            </ul>
+            <h3>Atividades Recentes</h3>
+            {feed.map((notice) => (
+              <FeedItem key={notice.id}>
+                <img src={notice.company.logo} alt={notice.company.name} />
+                <div className="notice">
+                  <div className="header">
+                    <span className="company">{notice.company.name}</span>
+                    <span>
+                      {`${
+                        notice.status === 'open'
+                          ? ' iniciou uma nova'
+                          : ' encerrou uma'
+                      } cotação em ${notice.date}  - `}
+                    </span>
+                    <span className="quotation">{`#${notice.quotation}`}</span>
+                  </div>
+                  <div className="info">
+                    <span>
+                      <FiEye />
+                      {`Views ${notice.views_count}`}
+                    </span>
+                    <span>
+                      <FiFileText />
+                      {`Cotações ${notice.quotations_count}`}
+                    </span>
+                  </div>
+                </div>
+              </FeedItem>
+            ))}
           </Feed>
         </Section>
-
-        <Footer />
       </Container>
     </>
   );

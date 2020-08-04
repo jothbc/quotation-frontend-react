@@ -1,278 +1,176 @@
-import styled, { keyframes } from 'styled-components';
-import { Link as LinkDOM } from 'react-router-dom';
-
-const fadeIn = keyframes`
-  0% { opacity: 0;
-    transform: translateY(10px);
-  }
-  100% { opacity: 100;
-    transform: translateY(0px);
-  }
-`;
+import styled from 'styled-components';
+import { shade } from 'polished';
 
 export const Container = styled.div`
-  background: #f2f2f2;
-  width: 100vw;
   height: 100%;
-`;
-
-export const Header = styled.div`
-  z-index: 2;
-  background: #151515;
-  height: 50px;
-  position: fixed;
-  top: 0;
-  width: 100%;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  span {
-    color: #fff;
-    font-size: 2em;
-    letter-spacing: 0.2em;
-    margin-left: 20px;
-  }
-  button {
-    background: transparent;
-    margin-right: 20px;
-    color: #fff;
-    display: flex;
-    align-items: center;
-    border: none;
-    letter-spacing: 0.2em;
-    font-weight: bold;
-  }
+  flex-direction: column;
 `;
-
-export const Footer = styled.div`
-  background: #151515;
-  height: 50px;
-
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-`;
-
-export const Button = styled.button``;
 
 export const Section = styled.div`
-  /* border: 1px solid red; */
-  margin-top: 50px;
-  height: calc(100vh - 100px);
+  height: 100%;
   display: flex;
-  max-width: 100vw;
-
-  @media (max-width: 650px) {
-    flex-direction: column;
-    overflow-y: auto;
-  }
 `;
 
-export const SectionBox = styled.div`
-  @media (max-height: 600px) {
-    overflow-y: auto;
-    padding-right: 100px;
-  }
+export const BoxArea = styled.div`
+  width: 100%;
+  max-width: 300px;
+  margin-top: 20px;
+  margin-left: 20px;
 `;
 
 export const Box = styled.div`
-  margin: 20px;
-  width: 300px;
-  height: 200px;
-  background: #ffffff;
-  box-shadow: 0px 0px 50px rgba(0, 0, 0, 0.25);
+  background: #fff;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.25);
   border-radius: 10px;
-  box-sizing: border-box;
+  height: 200px;
+  position: relative;
+  padding: 18px;
 
-  display: flex;
-  flex-direction: column;
-
-  @media (max-width: 650px) {
-    width: 90vw;
+  ul.quotation {
+    li {
+      list-style: none;
+      padding: 0 10px;
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px solid #666464;
+      transition: 300ms;
+      cursor: pointer;
+      span {
+        color: #a721a1;
+        & + span {
+          color: #666464;
+        }
+      }
+      & + li {
+        margin-top: 8px;
+      }
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
   }
-`;
+  ul.friends {
+    li {
+      list-style: none;
+      padding: 0 10px;
+      display: flex;
+      align-items: center;
+      transition: 300ms;
+      cursor: pointer;
+      img {
+        width: 25px;
+        height: 25px;
+        margin-right: 10px;
+        border-radius: 50%;
+      }
+      span {
+        color: #666464;
+      }
+      & + li {
+        margin-top: 8px;
+      }
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+  }
 
-export const BoxContent = styled.div`
-  /* border: 1px solid green; */
-  height: 100%;
-  overflow-y: auto;
-  padding: 10px 10px 0px 10px;
-`;
-
-export const LinkNone = styled(LinkDOM)`
-  text-decoration: none;
-`;
-
-export const LiQuotation = styled.li`
-  cursor: pointer;
-  animation: ${fadeIn} 1s;
-  list-style-type: none;
-  a {
+  button {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 35px;
+    background: #fff;
+    border: 3px solid #29a1c7;
+    border-radius: 0 0 10px 10px;
     width: 100%;
+    color: #221f3b;
     display: flex;
-    justify-content: space-around;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+    transition: 300ms;
+    svg {
+      margin-left: 5px;
+    }
+    &:hover {
+      border-color: ${shade(0.2, '#29a1c7')};
+      background: rgba(41, 161, 199, 0.2);
+      letter-spacing: 1px;
+    }
   }
-
-  border-bottom-color: #666464;
-  border-bottom-width: 1px;
-  border-bottom-style: solid;
-
-  margin-bottom: 5px;
-  padding: 5px;
-  span {
-    color: #a721a1;
-  }
-  span + span {
-    color: #666464;
-  }
-  &:hover {
-    transform: translateX(10px);
-  }
-  transition: all 0.5s;
-`;
-
-export const LiCompany = styled.li`
-  animation: ${fadeIn} 1s;
-  display: flex;
-  align-items: center;
-  padding: 10px;
-
-  transition: all 0.5s;
-
-  img {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    margin-right: 10px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
-  }
-
-  &:hover {
-    color: #a721a1;
-    transform: translateX(10px);
-    transition: all 0.5s;
-  }
-  cursor: pointer;
-`;
-
-export const Link = styled(LinkDOM)`
-  margin-top: auto;
-  width: 100%;
-  text-decoration: none;
-  text-align: center;
-  color: #000;
-  padding: 10px;
-  border: 3px solid #29a1c7;
-  border-radius: 0px 0px 10px 10px;
-  letter-spacing: 0.1em;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  transition: all 0.5s;
-
-  &:hover {
-    border: 3px solid #a721a1;
-    letter-spacing: 0.2em;
+  & + div {
+    margin-top: 20px;
   }
 `;
 
 export const Feed = styled.div`
+  height: calc(100vh - 50px - 20px);
   width: 100%;
-  background: #f1f1f1;
-  box-shadow: 0px 0px 50px rgba(0, 0, 0, 0.25);
-  border-radius: 20px 20px 0px 0px;
+  border-radius: 10px 10px 0 0;
   margin: 20px 20px 0 20px;
-  /* height: 100%; */
-  height: max-content;
-  padding-bottom: 50px;
-
   display: flex;
-  justify-content: center;
-  /* overflow-y: auto; */
-  position: relative;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background: #f1f1f1;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.25);
+  overflow: auto;
 
-  & > span {
-    position: absolute;
+  h3 {
     color: #636363;
-    padding: 20px;
-    border-bottom-color: #8d8d8d;
-    border-bottom-width: 1px;
-    border-bottom-style: solid;
-    height: 30px;
+    border-bottom: 1px solid #636363;
     width: 90%;
     text-align: center;
-  }
-  ul {
-    background: transparent;
-    margin-top: 50px;
-    width: 90%;
-  }
-
-  @media (max-width: 650px) {
-    width: 90vw;
+    margin-bottom: 20px;
   }
 `;
 
-export const LiFeed = styled.li`
-  /* border: 1px solid red; */
+export const FeedItem = styled.div`
+  width: 100%;
 
-  animation: ${fadeIn} 1s;
   display: flex;
   align-items: center;
-  margin-bottom: 10px;
-  a {
-    width: 100%;
-  }
 
   img {
-    cursor: pointer;
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    margin-right: 20px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    margin-right: 10px;
   }
 
-  div {
-    cursor: pointer;
-    color: #277dcd;
-    width: 100%;
+  & + div {
+    margin-top: 20px;
+  }
+
+  .notice {
     background: #e8e8e8;
     border-radius: 10px;
-    padding-left: 5px;
-
-    /* border: 1px solid green; */
-    div {
-      border-radius: 0;
-      border-bottom-color: #898585;
-      border-bottom-style: solid;
-      border-bottom-width: 1px;
-      width: 90%;
-      padding-bottom: 5px;
-      span {
-        color: black;
-        text-align: start;
-        margin-left: 10px;
+    width: 100%;
+    padding: 8px;
+    & .header {
+      color: #000;
+      border-bottom: 1px solid #898585;
+      & .company {
+        color: #277dcd;
+        font-weight: 700;
+        cursor: pointer;
       }
-      span + span {
+      & .quotation {
         color: #a721a1;
-        font-weight: bold;
+        font-weight: 700;
+        cursor: pointer;
       }
     }
-    div + div {
+
+    & .info {
+      margin-top: 2px;
       display: flex;
       justify-content: space-between;
-      margin-top: 5px;
-      border: none;
-      span {
-        color: #666464;
-        margin: 0 10px;
-        display: flex;
-        align-items: center;
-      }
-      span + span {
-        font-weight: normal;
+      align-items: center;
+      svg {
+        margin-right: 5px;
       }
     }
   }

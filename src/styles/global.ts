@@ -20,5 +20,6 @@ export default createGlobalStyle`
 
   #root{
     height: 100vh;
+    background: #f2f2f2;
   }
 `;
