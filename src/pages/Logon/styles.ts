@@ -21,6 +21,13 @@ const logo_anim = keyframes`
     box-shadow: 0 0 50px rgba(0,0,0,0.5);
   }
 `;
+const logo_anim_mobile = keyframes`
+  to {
+    transform: translate(0,calc(-300px / 2));
+    background: black;
+    box-shadow: 0 0 50px rgba(0,0,0,0.5);
+  }
+`;
 const signin_anim = keyframes`
   to{
     opacity: 1;
@@ -87,6 +94,13 @@ export const Logo = styled.div`
 
     /* poe delay nas letras */
     ${getDelay()}
+  }
+
+  @media only screen and (max-width: 450px) {
+    animation: ${logo_anim_mobile} 1s ease forwards 2.8s;
+    svg {
+      height: 30px;
+    }
   }
 `;
 

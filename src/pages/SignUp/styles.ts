@@ -23,6 +23,16 @@ export const Logo = styled.div`
       stroke-width: 1px;
     }
   }
+
+  @media only screen and (max-width: 450px) {
+    transform: none;
+    position: sticky;
+    display: flex;
+    justify-content: center;
+    svg {
+      height: 30px;
+    }
+  }
 `;
 
 export const Content = styled.div`
@@ -43,6 +53,17 @@ export const Content = styled.div`
     padding-top: 50px;
     div + div {
       margin-top: 14px;
+    }
+  }
+
+  @media only screen and (max-width: 450px) {
+    height: 100vh;
+    width: 100vw;
+    overflow-x: hidden;
+    overflow-y: auto;
+    position: sticky;
+    form {
+      height: fit-content;
     }
   }
 `;
